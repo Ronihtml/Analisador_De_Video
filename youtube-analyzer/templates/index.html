@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisador de Vídeos do YouTube</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <main class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="logo">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <h1 class="card-title">Analisador de Vídeos do YouTube</h1>
+                <p class="card-description">
+                    Digite uma URL do YouTube para baixar, transcrever e resumir o conteúdo do vídeo
+                </p>
+            </div>
+            <div class="card-content">
+                <form id="analyzer-form">
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            id="youtube-url" 
+                            placeholder="Digite a URL do YouTube" 
+                            required
+                        >
+                        <button type="submit" id="analyze-button">
+                            <span class="button-text">Analisar Vídeo</span>
+                            <span class="spinner hidden">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+
+                <div id="progress-container" class="hidden">
+                    <h3>Processando Vídeo</h3>
+                    <div class="progress-steps">
+                        <div class="step" data-step="0">
+                            <div class="step-indicator">
+                                <div class="step-icon"></div>
+                            </div>
+                            <div class="step-text">Baixando áudio do YouTube</div>
+                        </div>
+                        <div class="step" data-step="1">
+                            <div class="step-indicator">
+                                <div class="step-icon"></div>
+                            </div>
+                            <div class="step-text">Transcrevendo áudio com Whisper</div>
+                        </div>
+                        <div class="step" data-step="2">
+                            <div class="step-indicator">
+                                <div class="step-icon"></div>
+                            </div>
+                            <div class="step-text">Gerando resumo com Hugging Face</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="error-container" class="hidden">
+                    <div class="error-content">
+                        <i class="fas fa-times-circle"></i>
+                        <div>
+                            <h3>Erro</h3>
+                            <p id="error-message"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="summary-container" class="hidden">
+                    <div class="summary-header">
+                        <h3>Resumo do Vídeo</h3>
+                        <button id="copy-button">
+                            <i class="fas fa-copy"></i>
+                            Copiar
+                        </button>
+                    </div>
+                    <div id="summary-content"></div>
+                </div>
+            </div>
+            <div class="card-footer">
+                Powered by Whisper e Hugging Face
+            </div>
+        </div>
+    </main>
+
+    <div id="toast" class="hidden">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <div class="toast-message">Copiado para a área de transferência!</div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
+
