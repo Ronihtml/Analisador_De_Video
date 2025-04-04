@@ -74,7 +74,7 @@ youtube-analyzer/
 │   ├── templates/        # Templates HTML
 │   └── scripts/          # Scripts de processamento
 │
-├── downloads/            # Diretório para arquivos baixados
+├── downloads/            # Diretório para arquivos baixados(aparece automaticamente)
 ├── requirements.txt      # Dependências do projeto
 ├── config.py             # Configurações
 └── app.py                # Ponto de entrada da aplicação
