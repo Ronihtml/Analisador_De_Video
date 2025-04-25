@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da Busca - YouTube Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <main class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="logo">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <h1 class="card-title">Resultados da Busca</h1>
+                <p class="card-description">
+                    Resultados para: "{{ termo }}"
+                </p>
+                <div class="nav-links">
+                    <a href="/" class="nav-link"><i class="fas fa-home"></i> Início</a>
+                    <a href="/historico" class="nav-link"><i class="fas fa-history"></i> Histórico</a>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="search-container">
+                    <form action="/buscar" method="GET">
+                        <div class="form-group">
+                            <input type="text" name="termo" placeholder="Buscar análises..." value="{{ termo }}" required>
+                            <button type="submit">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                {% if analises %}
+                <div class="analises-list">
+                    {% for analise in analises %}
+                    <div class="analise-item">
+                        <div class="analise-header">
+                            <h3 class="analise-title">{{ analise.titulo }}</h3>
+                            <span class="analise-date">{{ analise.data_analise }}</span>
+                        </div>
+                        <div class="analise-content">
+                            <div class="analise-info">
+                                <p><strong>URL:</strong> <a href="{{ analise.url }}" target="_blank">{{ analise.url }}</a></p>
+                                <p><strong>Duração:</strong> {{ analise.duracao_video }}</p>
+                            </div>
+                            <div class="analise-actions">
+                                <a href="/analise/{{ analise.id }}" class="btn-view">
+                                    <i class="fas fa-eye"></i> Ver Detalhes
+                                </a>
+                                <form action="/excluir/{{ analise.id }}" method="POST" class="delete-form">
+                                    <button type="submit" class="btn-delete">
+                                        <i class="fas fa-trash"></i> Excluir
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-search"></i>
+                    <p>Nenhum resultado encontrado para "{{ termo }}"</p>
+                    <a href="/historico" class="btn-secondary">Voltar para o Histórico</a>
+                </div>
+                {% endif %}
+            </div>
+            <div class="card-footer">
+                Powered by Whisper e Hugging Face
+            </div>
+        </div>
+    </main>
+</body>
+</html>
