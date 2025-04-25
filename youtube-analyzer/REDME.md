@@ -69,12 +69,15 @@ O aplicativo processa tudo em tempo real e mostra o progresso ao usuário atrav�
 ```
 youtube-analyzer/
 │   |
-├   |
+├   |__desktop/           # Arquivos (run_desktop, tkinter_app)
+|   |
 │   ├── static/           # Arquivos estáticos (CSS, JS)
 │   ├── templates/        # Templates HTML
-│   └── scripts/          # Scripts de processamento
+│   └── scripts/          # Scripts de processamento web
 │
-├── downloads/            # Diretório para arquivos baixados(aparece automaticamente)
+|__ database.py           #Banco De Dados
+|
+├── downloads/            # Diretório para arquivos baixados(é criado automaticamente)
 ├── requirements.txt      # Dependências do projeto
 ├── config.py             # Configurações
 └── app.py                # Ponto de entrada da aplicação
