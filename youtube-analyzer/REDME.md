@@ -11,7 +11,7 @@ O aplicativo processa tudo em tempo real e mostra o progresso ao usuário atrav�
 
 ## Tecnologias Utilizadas
 
-- **Backend**: Flask (Python)
+- **Backend**: SQLite
 - **Frontend**: HTML, CSS, JavaScript
 - **Processamento de Áudio**: pytube, yt-dlp
 - **Transcrição**: OpenAI Whisper
